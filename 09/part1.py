@@ -10,28 +10,31 @@ with open(PATH_NAME) as file:
         # Read two characters each time
         chars = file.read(2)
 
-        # Stop if the above returns an empty string
+        # # Stop if the above returns an empty string
         if not chars:
             break
 
-        # Add pairs. If the last pair isn't a pair
-        # but instead a single digit, the single digit is added as it is.
+        # If the last char pair isn't a pair and instead contains a single character
+        # Add 0 to indicate 0 spaces after
+        if len(chars) == 1:
+            chars += '0'
+
         DISK_MAP.append(chars)
 
-blocks_string = ''
+
+# Pr
+processed_list = []
 current_ID = 0
 for map_pair in DISK_MAP:
 
     num_of_blocks = int(map_pair[0])
-    num_of_free_space = 0
-
-    if len(map_pair) == 2:
-        num_of_free_space = int(map_pair[1])
+    num_of_free_space = int(map_pair[1])
 
     blocks = num_of_blocks * str(current_ID)
     spaces = num_of_free_space * '.'
 
-    blocks_string += blocks + spaces
+    processed_list.append(blocks)
+    processed_list.append(spaces)
 
     current_ID += 1
 
