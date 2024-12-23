@@ -2,6 +2,7 @@
 PATH_NAME = 'inputs/test.txt'
 
 DISK_MAP = []
+
 with open(PATH_NAME) as file:
 
     while True:
@@ -19,11 +20,18 @@ with open(PATH_NAME) as file:
 
 blocks_string = ''
 current_ID = 0
-for char_pair in DISK_MAP:
+for map_pair in DISK_MAP:
 
-    if len(char_pair) == 1:
+    num_of_blocks = int(map_pair[0])
+    num_of_free_space = 0
 
-# One hour challenge:
-#   Attempt 1 fail
-#   Attempt 2:
-#       Time left: ???
+    if len(map_pair) == 2:
+        num_of_free_space = int(map_pair[1])
+
+    blocks = num_of_blocks * str(current_ID)
+    spaces = num_of_free_space * '.'
+
+    blocks_string += blocks + spaces
+
+    current_ID += 1
+
